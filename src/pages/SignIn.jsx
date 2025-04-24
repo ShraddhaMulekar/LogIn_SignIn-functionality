@@ -38,7 +38,7 @@ const SignIn = () => {
   return (
     <DIV>
       <h1>Welcome to Registration!</h1>
-      <form className="signIn_form" action="">
+      <form className="signIn_form" action="" onSubmit={handleSignIn}>
         <input
           type="text"
           placeholder="name"
@@ -57,9 +57,16 @@ const SignIn = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input type="submit" value="Register!" className="submit" onClick={handleSignIn} />
-        <Link to="/login"><button>Log in!</button></Link>
+        <input
+          type="submit"
+          value="Register!"
+          className="submit"
+          onClick={handleSignIn}
+        />
       </form>
+        <Link to="/login">
+          <button>Log in!</button>
+        </Link>
     </DIV>
   );
 };
