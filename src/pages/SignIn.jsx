@@ -1,15 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import Base_URL from "../Server_URL/Common_API";
+import { Link } from "react-router-dom";
+
 const SignIn = () => {
-    
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignIn = async (event) => {
+    event.preventDefault();
+    let payload = {
+      name,
+      email,
+      password,
+    };
+    try {
+      let data = await fetch(`${Base_URL}/user/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+      let res = await data.json();
+      // console.log("server respose", res);
+      alert(res.msg);
+      setName("");
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      // console.log("error", error);
+      alert(res.msg);
+    }
+  };
+
   return (
     <DIV>
       <h1>Welcome to Registration!</h1>
       <form className="signIn_form" action="">
-        <input type="text" placeholder="name" />
-        <input type="email" placeholder="email" />
-        <input type="password" placeholder="password" />
-        <input type="submit" className="submit" />
+        <input
+          type="text"
+          placeholder="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="email"
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input type="submit" value="Register!" className="submit" onClick={handleSignIn} />
+        <Link to="/login"><button>Log in!</button></Link>
       </form>
     </DIV>
   );
@@ -27,7 +76,7 @@ const DIV = styled.div`
     gap: 10px;
     /* border: solid; */
   }
-  input{
+  input {
     width: 50%;
     height: 30px;
     background: transparent;
@@ -35,7 +84,7 @@ const DIV = styled.div`
     padding: 4px 10px;
     margin: 20px 0;
   }
-  .submit{
+  .submit {
     width: 100px;
     height: 40px;
     border-radius: 20px;
