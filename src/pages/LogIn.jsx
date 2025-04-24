@@ -81,7 +81,7 @@ const DIV = styled.div`
     align-items: center;
   }
   input {
-    width: 50%;
+    width: 80%;
     height: 30px;
     background: transparent;
     font-size: medium;

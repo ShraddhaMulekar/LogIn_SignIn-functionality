@@ -81,10 +81,9 @@ const DIV = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10px;
-    /* border: solid; */
   }
   input {
-    width: 50%;
+    width: 80%;
     height: 30px;
     background: transparent;
     font-size: medium;
